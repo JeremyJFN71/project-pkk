@@ -12,7 +12,7 @@
     "Config": "config",
     "Database": "database",
     "Contracts": "contracts"
-  },
+  }, 
   "preloads": [
     "./start/routes",
     "./start/kernel"
