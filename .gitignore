@@ -5,3 +5,4 @@ coverage
 .DS_STORE
 .env
 tmp
+resources/views/product_create.edge

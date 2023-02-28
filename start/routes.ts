@@ -28,12 +28,8 @@ Route.get('/', async ({ view }) => {
 
 Route.get('/item', async ({ view }) => {
   return view.render('item', {
-    title: 'Item'
-  })
-})
-
-Route.get('/product', async ({ view }) => {
-  return view.render('product', {
     title: 'Product'
   })
 })
+
+Route.resource('/product', 'ProductsController')
