@@ -1,4 +1,4 @@
-
+![Logo](https://camo.githubusercontent.com/076aacc894daf3d9065f7d5bd1d7e8a3d0511668576cd66afddd0ce4af524eaa/68747470733a2f2f692e696d6775722e636f6d2f32774764454a4e2e706e67)
 # Project PKK
 
 Tugas Akhir membuat web kelas
@@ -11,9 +11,9 @@ Tugas Akhir membuat web kelas
   npm install
 ```
 
-- Create .env file and copy the content of .env.example file then paste it to .env.
+- Copy the content of `.env.example` file then create `.env` file and paste from before to `.env` file.
 
-- Create Database with the same name as `MYSQL_DB_NAME` from .env file.
+- Create Database with the same name as `MYSQL_DB_NAME` from `.env` file.
 
 - Run migration on first time (change `run` with `fresh` if you've run it before)
 ```bash
