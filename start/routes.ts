@@ -32,4 +32,10 @@ Route.get('/item', async ({ view }) => {
   })
 })
 
+Route.get('/admin', async ({ view }) => {
+  return view.render('admin.login', {
+    title: 'Login'
+  })
+})
+
 Route.resource('/product', 'ProductsController')
