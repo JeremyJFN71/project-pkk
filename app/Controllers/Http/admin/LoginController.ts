@@ -22,4 +22,9 @@ export default class LoginController {
             return response.redirect('/admin')
         }
     }
+
+    public async logout({auth, response}:HttpContextContract){
+        await auth.logout()
+        response.redirect('/admin')
+    }
 }
