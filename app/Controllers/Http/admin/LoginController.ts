@@ -9,15 +9,17 @@ export default class LoginController {
     }
 
     public async authenticate({ auth, request, response, session }:HttpContextContract){
-        request.validate(LoginValidator)
+        await request.validate(LoginValidator)
 
         const email = request.input('email')
         const password = request.input('password')
-
-        if(await auth.attempt(email, password)){
-            return response.redirect('/')
+        
+        try {
+            await auth.attempt(email, password)
+            response.redirect('/')
+        } catch {
+            session.flash('errors', {login: 'Login Gagal'})
+            return response.redirect('/admin')
         }
-        session.flash('errors', {login: 'Login Gagal'})
-        return response.redirect('')
     }
 }
