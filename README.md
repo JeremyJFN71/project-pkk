@@ -6,6 +6,16 @@ Tugas Akhir membuat web kelas
 
 ## Installation on First Time
 
+- Clone this repository
+```bash
+  git clone https://github.com/JeremyJFN71/project-pkk.git
+```
+
+- Go to directory
+```bash
+  cd project-pkk
+```
+
 - Install dependency with npm
 ```bash
   npm install
