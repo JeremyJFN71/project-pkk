@@ -15,7 +15,7 @@ export default class ProductsController {
   }
 
   public async create({view}: HttpContextContract) {
-    return view.render('product', {
+    return view.render('product_create', {
       title: 'Product'
     })
   }
