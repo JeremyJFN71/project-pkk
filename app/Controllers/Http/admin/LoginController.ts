@@ -19,12 +19,12 @@ export default class LoginController {
             response.redirect('/')
         } catch {
             session.flash('errors', {login: 'Login Gagal'})
-            return response.redirect('/admin')
+            return response.redirect('/admin/login')
         }
     }
 
     public async logout({auth, response}:HttpContextContract){
         await auth.logout()
-        response.redirect('/admin')
+        response.redirect('/admin/login')
     }
 }
