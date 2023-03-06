@@ -8,31 +8,31 @@ Tugas Akhir membuat web kelas
 
 - Clone this repository
 ```bash
-  git clone https://github.com/JeremyJFN71/project-pkk.git
+git clone https://github.com/JeremyJFN71/project-pkk.git
 ```
 
 - Go to directory
 ```bash
-  cd project-pkk
+cd project-pkk
 ```
 
 - Install dependency with npm
 ```bash
-  npm install
+npm install
 ```
 
 - Copy the content of `.env.example` file then create `.env` file and paste from before to `.env` file.
 
 - Create Database with the same name as `MYSQL_DB_NAME` from `.env` file.
 
-- Run migration on first time (change `run` with `fresh` if you've run it before)
+- Run migration
 ```bash
-  node ace migration:run --seed
+node ace migration:fresh --seed
 ```
 
 - Start server!
 ```bash
-  npm run dev
+npm run dev
 ```
 ## Authors
 
