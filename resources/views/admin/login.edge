@@ -5,6 +5,7 @@
 <div class="container rounded-3 p-5 shadow" style="max-width: 600px; margin-top: 80px;">
     <h1 class="fw-bold text-center mb-5">Masuk Sebagai Admin</h1>
     <form method="POST">
+        {{ csrfField() }}
         @if(flashMessages.has('errors.login'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             Login Gagal
