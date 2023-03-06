@@ -14,9 +14,9 @@
     </style>
 
     <!-- Product section-->
-    <section class="py-5 mt-3">
+    <section class="py-5" style="margin-top:87px;">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="row gx-4 gx-lg-5 align-items-center ">
                 <div class="col-md-5">
 
                     @if(product.images.length===1)
@@ -48,8 +48,8 @@
 
                 </div>
                 <div class="col-md-6">
-                    <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
-                    <div class="fs-5 mb-5">
+                    <h1 class="display-5 fw-bolder mb-4">{{ product.name }}</h1>
+                    <div class="fs-5 mb-4">
                         <span>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</span>
                     </div>
                     <p class="lead">{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</p>
@@ -61,6 +61,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
 @endsection
