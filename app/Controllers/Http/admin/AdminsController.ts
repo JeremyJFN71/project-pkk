@@ -45,7 +45,7 @@ export default class AdminsController {
         }
         
         // Create product
-        const product = await prisma.product.create({
+        await prisma.product.create({
             data: {
                 name: request.input('name'),
                 description: request.input('description'),
@@ -58,8 +58,6 @@ export default class AdminsController {
                 }
             }
         })
-
-        console.log(product)
 
         // Redirect
         return response.redirect('/admin')
