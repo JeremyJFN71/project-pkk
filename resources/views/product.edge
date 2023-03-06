@@ -15,7 +15,7 @@
     <!-- Product-->
     <section class="py-5 mt-3">
         <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fs-1 fw-bold mb-4 "> Products</h2>
+            <h2 class="fs-1 fw-bold mb-4 "> Products</h2>
             <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3">
 
                 @each(product in products)
@@ -36,7 +36,9 @@
                     </div>
                 </div>
                 @else
-                <h1 class="text-center">Tidak ada produk</h1>
+                <div class="mx-auto">
+                    <h1 class="text-center">Tidak ada produk</h1>
+                </div>
                 @endeach
             </div>
         </div>
