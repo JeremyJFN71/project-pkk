@@ -6,13 +6,12 @@ import Product from 'App/Models/Product'
 import ProductImage from 'App/Models/ProductImage'
 
 export default class AdminsController {
-    public async index({ view, i18n }:HttpContextContract){
+    public async index({ view }:HttpContextContract){
         const products = await Product.query().preload('images').orderBy('id', 'desc')
 
         return view.render('admin/admin', {
             title: 'Admin',
             products,
-            i18n
         })
     }
 
