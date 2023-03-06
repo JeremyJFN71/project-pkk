@@ -1,6 +1,17 @@
 @layout('layouts/main')
 
 @section('content')
+
+    <style>
+        .see:hover {
+            background: #6C63FF;
+            transition: 0.5s
+        }
+
+        .border-card {
+            border-radius: 10px;
+        }
+    </style>
     <!-- Product-->
     <section class="py-5 mt-3">
         <div class="container px-4 px-lg-5 mt-5">
@@ -9,7 +20,7 @@
 
                 @each(product in products)
                 <div class="col mb-5">
-                    <div class="card rounded border-secondary h-100">
+                    <div class="card border-card h-100 shadow">
                         <img class="card-img-top" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 3/2; object-fit: cover" />
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -19,7 +30,7 @@
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto rounded-pill" href="/product/{{ product.id }}">Lihat Produk</a>
+                                <a class="btn btn-outline-dark see mt-auto rounded-pill" href="/product/{{ product.id }}">Lihat Produk</a>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,15 @@
 
     <style>
 
+        .see:hover {
+            background: #6C63FF;
+            transition: 0.5s
+        }
+
+        .img-card {
+            border-radius: 10px;
+        }
+
 
         .carousel-control-prev-icon,.carousel-control-next-icon {
             background-color: #6C63FF;
@@ -20,7 +29,7 @@
                 <div class="col-md-5">
 
                     @if(product.images.length===1)
-                        <img class="card-img-top mb-5 mb-md-0" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 6/7; object-fit: cover;" />
+                        <img class="card-img-top mb-5 mb-md-0 shadow img-card" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 6/7; object-fit: cover;" />
                     @else
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                         <div class="carousel-indicators">
@@ -54,7 +63,7 @@
                     </div>
                     <p class="lead">{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</p>
                     <div class="d-flex">
-                        <a href="{{ href }}" class="btn btn-outline-dark rounded-pill flex-shrink-0" target="_blank">
+                        <a href="{{ href }}" class="btn btn-outline-dark see rounded-pill flex-shrink-0" target="_blank">
                             <i class="bi bi-whatsapp me-1"></i>
                             Beli Sekarang
                         </a>
