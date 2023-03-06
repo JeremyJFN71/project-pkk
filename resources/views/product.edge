@@ -13,7 +13,7 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder">{{ product.name }}</h5>
-                                <i>Rp {{ product.price }}</i> 
+                                <i>{{ I18n.locale('id').formatCurrency(product.price, { currency: 'IDR' }) }}</i> 
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import I18n from '@ioc:Adonis/Addons/I18n'
 import Product from 'App/Models/Product'
 
 export default class ProductsController {
@@ -8,6 +9,7 @@ export default class ProductsController {
     return view.render('product', {
       title: 'Product',
       products,
+      I18n,
     })
   }
 
@@ -18,6 +20,7 @@ export default class ProductsController {
     return view.render('item', {
       title: 'Product',
       product,
+      I18n,
     })
   }
 }

@@ -51,7 +51,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</td>
                 <td>{{ product.wa_number }}</td>
-                <td>Rp {{ product.price }}</td>
+                <td>{{ I18n.locale('id').formatCurrency(product.price, { currency: 'IDR' }) }}</td>
                 <td>edit</td>
                 <td>delete</td>
             </tr>
