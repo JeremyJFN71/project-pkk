@@ -11,13 +11,15 @@ export default class ProductsController {
     })
   }
 
-  public async show({ view, params }: HttpContextContract) {
+  public async show({ view, params, request }: HttpContextContract) {
     const product = await Product.find(params.id)
     await product?.load('images')
+    const href = `https://wa.me/62${product?.wa_number}/?text=Saya%20ingin%20membeli%20${product?.name}%0A${request.completeUrl()}`
 
     return view.render('item', {
       title: 'Product',
       product,
+      href,
     })
   }
 }
