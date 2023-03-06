@@ -8,10 +8,20 @@
 
         .add {
             display: flex;
-            background: #6C63FF;
+            background: #6C74FF;
             padding: 10px 5px;
             font-size: 15px;
-            border-radius: 50px
+            border-radius: 10px;
+            border: none;
+        }
+
+        .add:hover {
+            background: #6C63FF;
+        }
+
+        .add-button {
+            display: flex;
+            justify-content: end;
         }
 
         .add p {
@@ -25,11 +35,14 @@
 @section('content')
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
-    <button onclick="window.location.href = '{{ route('admin.create') }}'" class="add mb-3">
-        <p>Tambah Produk</p>
-        <iconify-icon icon="material-symbols:add" style="color: white;" width="20" height="20"></iconify-icon>
-    </button>
-    <table class="table table-bordered text-center bg-secondary-subtle">
+    <div class="add-button">
+        
+        <button onclick="window.location.href = '{{ route('admin.create') }}'" class="add mb-3">
+            <p>Tambah Produk</p>
+            <iconify-icon icon="material-symbols:add" style="color: white;" width="20" height="20"></iconify-icon>
+        </button>
+    </div>
+    <table class="table table-bordered text-center align-middle bg-secondary-subtle">
         <thead>
             <tr>
                 <th scope="col">No.</th>
@@ -52,8 +65,8 @@
                 <td class="text-start">{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</td>
                 <td>{{ product.wa_number }}</td>
                 <td>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</td>
-                <td>edit</td>
-                <td>delete</td>
+                <td><iconify-icon icon="material-symbols:edit-outline" style="color: #6c63ff;" width="25" height="25"></iconify-icon></td>
+                <td><iconify-icon icon="ic:baseline-delete-forever" style="color: red;" width="25" height="25"></iconify-icon></td>
             </tr>
             @endeach
         </tbody>
