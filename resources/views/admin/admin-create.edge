@@ -1,0 +1,50 @@
+@layout('layouts/admin')
+
+@section('content')
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-5 col-md-8 mx-auto p-5" style="border: 1px solid black">
+            <h2 class="text-center mb-5">Buat Produk</h2>
+            <form method="POST" action="{{ route('admin.store') }}" enctype="multipart/form-data">
+                {{ csrfField() }}
+                <div class="mb-3">
+                    <label for="name">Nama Produk</label>
+                    <input type="text" id="name" name="name" class="form-control">
+                    @if(flashMessages.has('errors.name'))
+                        <p>{{ flashMessages.get('errors.name') }}</p>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="images">Gambar Produk</label>
+                    <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple>
+                    @if(flashMessages.has('images'))
+                        <p>{{ flashMessages.get('images') }}</p>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="description">Deskripsi</label>
+                    <textarea name="description" id="description" cols="30" rows="3" class="form-control"></textarea>
+                    @if(flashMessages.has('errors.description'))
+                        <p>{{ flashMessages.get('errors.description') }}</p>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="wa_number">Nomor WA</label>
+                    <input type="text" id="wa_number" name="wa_number" class="form-control">
+                    @if(flashMessages.has('errors.wa_number'))
+                        <p>{{ flashMessages.get('errors.wa_number') }}</p>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="price">Harga</label>
+                    <input type="text" id="price" name="price" class="form-control">
+                    @if(flashMessages.has('errors.price'))
+                        <p>{{ flashMessages.get('errors.price') }}</p>
+                    @endif
+                </div>
+                <button type="submit" class="btn btn-success w-100 mt-3">Buat</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection

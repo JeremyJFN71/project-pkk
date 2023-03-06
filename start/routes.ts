@@ -32,13 +32,18 @@ Route.get('/item', async ({ view }) => {
   })
 })
 
-Route.get('/admin', 'admin/AdminsController.index')
+Route.get('/product', 'ProductsController.index')
+Route.get('/product/:id', 'ProductsController.show')
 
-Route.resource('/product', 'ProductsController')
-
+// No login Required
 Route.group(()=>{
   Route.get('/admin/login', 'admin/LoginController.index')
   Route.post('/admin/login', 'admin/LoginController.authenticate')
 }).middleware('guest')
+
+// Login Required
+Route.group(()=>{
+  Route.resource('/admin', 'admin/AdminsController').as('admin')
+}).middleware('auth:web')
 
 Route.get('/logout', 'Admin/LoginController.logout')

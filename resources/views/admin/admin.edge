@@ -25,8 +25,8 @@
 @section('content')
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
-    <button class="add mb-3">
-        <p>Tambah Produk</p> 
+    <button onclick="window.location.href = '{{ route('admin.create') }}'" class="add mb-3">
+        <p>Tambah Produk</p>
         <iconify-icon icon="material-symbols:add" style="color: white;" width="20" height="20"></iconify-icon>
     </button>
     <table class="table table-bordered text-center bg-secondary-subtle">
@@ -44,12 +44,12 @@
             </tr>
         </thead>
         <tbody>
-            @each(product in products)
+            @each((product, index) in products)
             <tr>
-                <th scope="row">{{ product.id }}</th>
-                <td><img src="{{ product.images[0].image }}" alt=""></td>
+                <th scope="row">{{ index+1 }}</th>
+                <td><img src="{{ product.images[0].image }}" alt="" style="width: 100px"></td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.description.replace('\n', '<br>') }}</td>
+                <td>{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</td>
                 <td>{{ product.wa_number }}</td>
                 <td>Rp {{ product.price }}</td>
                 <td>edit</td>
