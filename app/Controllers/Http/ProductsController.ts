@@ -1,9 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Product from 'App/Models/Product'
+import {prisma} from '@ioc:Adonis/Addons/Prisma'
 
 export default class ProductsController {
   public async index({ view }: HttpContextContract) {
-    const products = await Product.query().preload('images').orderBy('id', 'desc')
+    const products = await prisma.product.findMany({include: {images: true}})
 
     return view.render('product', {
       title: 'Product',
@@ -12,8 +12,10 @@ export default class ProductsController {
   }
 
   public async show({ view, params, request }: HttpContextContract) {
-    const product = await Product.find(params.id)
-    await product?.load('images')
+    const product = await prisma.product.findUnique({
+      where:{
+        id: params.id
+      }, include: {images: true}})
     const href = `https://wa.me/62${product?.wa_number}/?text=Saya%20ingin%20membeli%20${product?.name}%0A${request.completeUrl()}`
 
     return view.render('item', {
