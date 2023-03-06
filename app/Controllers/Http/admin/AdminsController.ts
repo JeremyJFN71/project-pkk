@@ -23,7 +23,9 @@ export default class AdminsController {
     
     public async store({request, response, session}: HttpContextContract) {
         // Validation
-        const images = request.files('images', {extnames: ['jpg', 'jpeg', 'png', 'jfif']})
+        const images = request.files('images', {
+            extnames: ['jpg', 'jpeg', 'png', 'jfif']
+        })
         if(!images[0]){
             session.flash('images', 'Kolom Gambar Produk wajib diisi')
         }

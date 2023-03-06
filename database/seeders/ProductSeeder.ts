@@ -14,12 +14,6 @@ export default class extends BaseSeeder {
         price: 999999999,
       },
       {
-        name: 'SIJA AIThreads Black T-Shirt',
-        description: `Kaos tema AI Threads adalah kaos dengan desain yang terinspirasi oleh perkembangan teknologi kecerdasan buatan (AI) dan Sistem Infromasi Jaringan dan Aplikasi(SIJA). Kaos ini menggunakan gambar atau grafik yang menunjukkan berbagai penjelasan tentang Kelas XII SIJA 2 dan teknologi AI.`,
-        wa_number: '085717919259',
-        price: 89999,
-      },
-      {
         name: 'Anari Girls',
         description: `- ANARI merupakan nama brand produk kami. ANARI sendiri merupakan singkatan dari nama kami, yaitu Asia, Nasywa, dan Rini
 - Ukuran: 35cm x 39 cm
@@ -79,24 +73,20 @@ export default class extends BaseSeeder {
         product_id: 1
       },
       {
-        image: '/uploads/kaos_PKK_Althafi Hilal Anshar - Althafi Hilal Anshar.png',
+        image: '/uploads/Picsart_23-03-03_21-17-08-347 - Rini rahmawati.png',
         product_id: 2
       },
       {
-        image: '/uploads/Picsart_23-03-03_21-17-08-347 - Rini rahmawati.png',
+        image: '/uploads/T-Shirt Design - Cahya Triamelia.png',
         product_id: 3
       },
       {
-        image: '/uploads/T-Shirt Design - Cahya Triamelia.png',
+        image: '/uploads/AC9F8083-473B-4ECD-9251-F25F82EA659B - Nabila Oktavia.png',
         product_id: 4
       },
       {
-        image: '/uploads/AC9F8083-473B-4ECD-9251-F25F82EA659B - Nabila Oktavia.png',
-        product_id: 5
-      },
-      {
         image: '/uploads/Origin Japanese - Nurul Auliya Rahman.png',
-        product_id: 6
+        product_id: 5
       },
     ])
   }
