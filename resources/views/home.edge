@@ -1,6 +1,15 @@
 @layout('layouts/main')
 
 @section('content')
+
+    <style>
+        .creator{
+            width: 300px;
+            border-radius: 18%;
+            padding: 40px
+        }
+    </style>
+
     <!-- Header-->
     <header class="py-5 mt-5" style="background: #111827">
         <div class="container px-lg-5 my-5">
@@ -30,16 +39,16 @@
             <div class="row align-items-center justify-content-evenly">
                 <h1 class="text-center mb-5 fw-bold">Creator</h1>
                 <div class="col-lg-4 col-md-6 text-center">
-                    <img src="/assets/mr.png" width="300px" />
-                    <h3>Ridwan Alfarezi</h3>
+                    <img class="creator" src="/assets/ridwan.jpeg" />
+                    <h5 class="fw-800">Ridwan Alfarezi</h5>
                 </div>
                 <div class="col-lg-4 col-md-6 text-center">
-                    <img src="/assets/mr.png" width="300px" />
-                    <h3>Ahmad Muhajir Syamlan</h3>
+                    <img class="creator" src="/assets/muhajirr.jpg"/>
+                    <h5 class="fw-800">Ahmad Muhajir Syamlan</h5>
                 </div>
                 <div class="col-lg-4 col-md-12 text-center">
-                    <img src="/assets/mr.png" width="300px" />
-                    <h3>Iyan Rohib Siagian</h3>
+                    <img class="creator" src="/assets/iyan.jpg" />
+                    <h5 class="fw-800">Iyan Rohib Siagian</h5>
                 </div>
             </div>
         </div>
