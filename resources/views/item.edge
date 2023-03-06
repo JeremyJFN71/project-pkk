@@ -18,32 +18,34 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-5">
+
+                    @if(product.images.length<=1)
+                        <img class="card-img-top mb-5 mb-md-0" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 6/7; object-fit: cover;" />
+                    @else
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                         <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            @each((image, index) in product.images)
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ index }}" class="{{index==0? 'active': ''}}" aria-current="{{index==0? 'true': ''}}" aria-label="Slide {{ index+1 }}"></button>
+                            @endeach
                         </div>
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
-                          </div>
+                            @each((image, index) in product.images)
+                            <div class="carousel-item {{index==0? 'active': ''}}">
+                                <img src="{{ image.image }}" class="d-block w-100" alt="..." style="aspect-ratio: 6/7; object-fit: cover;">
+                            </div>
+                            @endeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon"></span>
-                          <span class="visually-hidden ">Previous</span>
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden ">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                          <span class="carousel-control-next-icon"></span>
-                          <span class="visually-hidden">Next</span>
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Next</span>
                         </button>
-                      </div>
+                    </div>
+                    @endif
+
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
