@@ -1,19 +1,18 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Application from '@ioc:Adonis/Core/Application'
-import I18n from '@ioc:Adonis/Addons/I18n'
 
 import ProductValidator from 'App/Validators/ProductValidator'
 import Product from 'App/Models/Product'
 import ProductImage from 'App/Models/ProductImage'
 
 export default class AdminsController {
-    public async index({ view }:HttpContextContract){
+    public async index({ view, i18n }:HttpContextContract){
         const products = await Product.query().preload('images').orderBy('id', 'desc')
 
         return view.render('admin/admin', {
             title: 'Admin',
             products,
-            I18n
+            i18n
         })
     }
 

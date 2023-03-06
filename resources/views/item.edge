@@ -11,7 +11,7 @@
                 <div class="col-md-7">
                     <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
                     <div class="fs-5 mb-5">
-                        <span>{{ I18n.locale('id').formatCurrency(product.price, { currency: 'IDR' }) }}</span>
+                        <span>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</span>
                     </div>
                     <p class="lead">{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</p>
                     <div class="d-flex">
