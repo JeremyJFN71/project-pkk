@@ -1,14 +1,51 @@
 @layout('layouts/main')
 
 @section('content')
+
+    <style>
+
+
+        .carousel-control-prev-icon,.carousel-control-next-icon {
+            background-color: #6C63FF;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    </style>
+
     <!-- Product section-->
     <section class="py-5 mt-3">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-5">
-                    <img class="card-img-top mb-5 mb-md-0" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 6/7; object-fit: cover;" />
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{{ product.images[0].image }}" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon"></span>
+                          <span class="visually-hidden ">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                          <span class="carousel-control-next-icon"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
                     <div class="fs-5 mb-5">
                         <span>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</span>
