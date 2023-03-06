@@ -10,7 +10,7 @@
                 @each(product in products)
                 <div class="col mb-5">
                     <div class="card rounded border-secondary h-100 p-4">
-                        <img class="card-img-top" src="{{ product.images[0].image }}" alt="..." />
+                        <img class="card-img-top" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 3/2; object-fit: cover" />
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder mb-4">{{ product.name }}</h5>

@@ -49,7 +49,7 @@
                 <th scope="row">{{ index+1 }}</th>
                 <td><img src="{{ product.images[0].image }}" alt="" style="width: 100px"></td>
                 <td>{{ product.name }}</td>
-                <td>{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</td>
+                <td class="text-start">{{{ product.description.replace(/(?:\r\n|\r|\n)/g, "<br>") }}}</td>
                 <td>{{ product.wa_number }}</td>
                 <td>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</td>
                 <td>edit</td>

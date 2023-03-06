@@ -53,7 +53,7 @@ export default class AdminsController {
         }
 
         // Redirect
-        return response.redirect('/product')
+        return response.redirect('/admin')
     }
 
     public async show({}: HttpContextContract) {}
