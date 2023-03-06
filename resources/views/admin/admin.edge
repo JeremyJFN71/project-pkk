@@ -44,16 +44,18 @@
             </tr>
         </thead>
         <tbody>
+            @each(product in products)
             <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th scope="row">{{ product.id }}</th>
+                <td><img src="{{ product.images[0].image }}" alt=""></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description.replace('\n', '<br>') }}</td>
+                <td>{{ product.wa_number }}</td>
+                <td>Rp {{ product.price }}</td>
+                <td>edit</td>
+                <td>delete</td>
             </tr>
+            @endeach
         </tbody>
     </table>
 </div>
