@@ -32,11 +32,13 @@ Route.get('/item', async ({ view }) => {
   })
 })
 
+Route.get('/admin', 'admin/AdminsController.index')
+
 Route.resource('/product', 'ProductsController')
 
 Route.group(()=>{
-  Route.get('/admin/login', 'Admin/LoginController.index')
-  Route.post('/admin/login', 'Admin/LoginController.authenticate')
+  Route.get('/admin/login', 'admin/LoginController.index')
+  Route.post('/admin/login', 'admin/LoginController.authenticate')
 }).middleware('guest')
 
 Route.get('/logout', 'Admin/LoginController.logout')

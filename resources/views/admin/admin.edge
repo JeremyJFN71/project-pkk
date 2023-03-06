@@ -1,0 +1,60 @@
+@layout('layouts/admin')
+
+@section('styles')
+    <style>
+        .tabel {
+            margin: 100px auto;
+        }
+
+        .add {
+            display: flex;
+            background: #6C63FF;
+            padding: 10px 5px;
+            font-size: 15px;
+            border-radius: 50px
+        }
+
+        .add p {
+            margin: auto 10px;
+            color: #ffffff;
+        }
+
+    </style>
+@endsection
+
+@section('content')
+<div class="container tabel">
+    <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
+    <button class="add mb-3">
+        <p>Tambah Produk</p> 
+        <iconify-icon icon="material-symbols:add" style="color: white;" width="20" height="20"></iconify-icon>
+    </button>
+    <table class="table table-bordered text-center bg-secondary-subtle">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Gambar</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Deskripsi</th>
+                <th scope="col">Nomor Telepon</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Ubah</th>
+                <th scope="col">Hapus</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@endsection

@@ -3,7 +3,7 @@ import LoginValidator from 'App/Validators/LoginValidator'
 
 export default class LoginController {
     public async index({ view }:HttpContextContract){
-        return view.render('admin.login', {
+        return view.render('admin/login', {
             title: 'Login'
         })
     }
@@ -16,7 +16,7 @@ export default class LoginController {
         
         try {
             await auth.attempt(email, password)
-            response.redirect('/')
+            response.redirect('/admin')
         } catch {
             session.flash('errors', {login: 'Login Gagal'})
             return response.redirect('/admin/login')
