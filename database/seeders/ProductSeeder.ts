@@ -83,7 +83,7 @@ export default class extends BaseSeeder {
         product_id: 2
       },
       {
-        image: '/uploads/Picsart_23-03-03_21-17-08-347 - Rini rahmawati.jpg',
+        image: '/uploads/Picsart_23-03-03_21-17-08-347 - Rini rahmawati.png',
         product_id: 3
       },
       {
@@ -91,7 +91,7 @@ export default class extends BaseSeeder {
         product_id: 4
       },
       {
-        image: '/uploads/AC9F8083-473B-4ECD-9251-F25F82EA659B - Nabila Oktavia.jpeg',
+        image: '/uploads/AC9F8083-473B-4ECD-9251-F25F82EA659B - Nabila Oktavia.png',
         product_id: 5
       },
       {
