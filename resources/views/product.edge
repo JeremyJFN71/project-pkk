@@ -1,19 +1,20 @@
-@layout('layouts/main')
+@layout('layouts/main-products')
 
 @section('content')
     <!-- Product-->
     <section class="py-5 mt-3">
         <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fs-1 fw-bold "> Products</h2>
             <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
 
                 @each(product in products)
                 <div class="col mb-5">
-                    <div class="card rounded-5 h-100">
+                    <div class="card rounded border-secondary h-100 p-4">
                         <img class="card-img-top" src="{{ product.images[0].image }}" alt="..." />
                         <div class="card-body p-4">
                             <div class="text-center">
-                                <h5 class="fw-bolder">{{ product.name }}</h5>
-                                <i>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</i>
+                                <h5 class="fw-bolder mb-4">{{ product.name }}</h5>
+                                <i class="fw-bold">{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</i>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
