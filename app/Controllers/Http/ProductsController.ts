@@ -1,13 +1,20 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Product from 'App/Models/Product'
+import Category from 'App/Models/Category'
 
 export default class ProductsController {
-  public async index({ view }: HttpContextContract) {
-    const products = await Product.query().preload('images').orderBy('id', 'desc')
+  public async index({ view, request }: HttpContextContract) {
+    const categories = await Category.query().orderBy('name', 'asc')
+    let products = await Product.query().preload('images').orderBy('id', 'desc')
+    if (request.qs().category){
+      // Category.
+      products = await Product.query().preload('images').where('category_id', request.qs().category).orderBy('id', 'desc')
+    }
 
     return view.render('product', {
       title: 'Product',
-      products
+      products,
+      categories
     })
   }
 
