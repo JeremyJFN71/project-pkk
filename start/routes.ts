@@ -46,4 +46,4 @@ Route.group(()=>{
   Route.resource('/admin', 'admin/AdminsController').as('admin')
 }).middleware('auth:web')
 
-Route.get('/logout', 'Admin/LoginController.logout')
+Route.get('/admin/logout', 'admin/LoginController.logout')

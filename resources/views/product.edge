@@ -1,7 +1,6 @@
 @layout('layouts/main')
 
-@section('content')
-
+@section('styles')
     <style>
         .border-card {
             border-radius: 10px;
@@ -12,6 +11,9 @@
         }
 
     </style>
+@endsection
+
+@section('content')
     <!-- Product-->
     <section class="py-5 mt-3">
         <div class="container px-4 px-lg-5 mt-5">
@@ -19,9 +21,9 @@
                 <h2 class="fs-1 fw-bold">Products</h2>
                 <select class="form-select" style="width: 200px;" name="category" id="category">
                     <option value="Semua">Semua</option>
-                    <option value="Baju">Baju</option>
-                    <option value="Tas">Tas</option>
-                    <option value="Jaket">Jaket</option>
+                    @each(category in categories)
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    @endeach
                 </select>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -51,4 +53,13 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        const category = document.querySelector('#category')
+        category.addEventListener('change', (e)=>{
+            console.log(e.target.value)
+        })
+    </script>
 @endsection
