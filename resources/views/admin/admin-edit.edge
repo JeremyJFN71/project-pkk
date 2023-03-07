@@ -36,12 +36,15 @@
                         <label style="font-size: 17px;" for="images">Gambar Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple onchange="imagePreview(event)">
+                        <label for="images" class="btn btn-primary px-3 me-2" style="border-radius: 30px;">
+                            <iconify-icon icon="material-symbols:upload-sharp"></iconify-icon> Upload
+                        </label>
+                        <span id="image-length">No file choosen</span>
+                        <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple onchange="imagePreview(event)" hidden>
                         @if(flashMessages.has('images'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('images') }}</div>
                         @endif
-                        <div class="d-flex flex-wrap mt-2" id="image-buttons">
-                        </div>
+                        <div class="d-flex flex-wrap mt-2" id="image-buttons"></div>
                     </div>
                 </div>
 
@@ -128,11 +131,14 @@
 <script>
     // Preview Image
     const imgBtn = document.querySelector('#image-buttons')
+    const imgLen = document.querySelector('#image-length')
     const imgMod = document.querySelector('#image-modal')
     const nameMod = document.querySelector('#name-modal')
 
     function imagePreview(e){
         const fileInput = e.target.files
+
+        imgLen.innerText = `${fileInput.length} files`
 
         let btn = '';
         let images = [];
@@ -169,6 +175,7 @@
     const categories = document.querySelectorAll('.form-select option');
     
     btnReset.addEventListener('click', function(e){
+        imgLen.innerText = 'No file choosen'
         imgBtn.innerHTML = '';
 
         inputs.forEach((input)=>{
