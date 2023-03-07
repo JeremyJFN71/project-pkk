@@ -20,7 +20,7 @@ export default class AdminsController {
         const categories = await Category.query().orderBy('name', 'asc')
 
         return view.render('admin/admin-create', {
-            title: 'Product',
+            title: 'Admin',
             categories
         })
     }
@@ -39,6 +39,11 @@ export default class AdminsController {
             }
         }
         await request.validate(ProductValidator)
+
+        if(!images[0]){
+            return response.redirect('/admin/create')
+        }
+        // End of validation
 
         
         // Create product
@@ -65,13 +70,42 @@ export default class AdminsController {
 
     public async show({}: HttpContextContract) {}
 
-    public async edit({ view }: HttpContextContract) {
+    public async edit({ view, params }: HttpContextContract) {
+        const product = await Product.find(params.id)
+        const categories = await Category.query().orderBy('name', 'asc')
+
         return view.render('admin/admin-edit', {
-            title: 'Edit Produk'
+            title: 'Admin',
+            product,
+            categories
         })
     }
 
-    public async update({}: HttpContextContract) {}
+    public async update({ request, session, response, params }: HttpContextContract) {
+        // Validation
+        const images = request.files('images', {
+            extnames: ['jpg', 'jpeg', 'png', 'jfif']
+        })
+        if(!images[0]){
+            session.flash('images', 'Kolom Gambar Produk wajib diisi')
+        }
+        for (let image of images) {
+            if(!image.isValid){
+            session.flash('images', 'File harus berekstensi jpg, jpeg, png, atau jfif')
+            }
+        }
+        await request.validate(ProductValidator)
 
-    public async destroy({}: HttpContextContract) {}
+        if(!images[0]){
+            return response.redirect(`/admin/${params.id}/edit`)
+        }
+        // End of validation
+    }
+
+    public async destroy({params, response}: HttpContextContract) {
+        const product = await Product.find(params.id)
+        product?.delete()
+
+        return response.redirect('/admin')
+    }
 }

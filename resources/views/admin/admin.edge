@@ -82,12 +82,13 @@
                 <td>{{ product.wa_number }}</td>
                 <td>{{ i18n.formatCurrency(product.price, { currency: 'IDR' }) }}</td>
                 <td>
-                    <a href="/admin/1/edit">
+                    <a href="/admin/{{ product.id }}/edit">
                         <iconify-icon icon="material-symbols:edit-outline" style="color: #6c63ff;" width="25" height="25"></iconify-icon></td>
                     </a>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-transparent delete" style="border: none;"
+                        data-bs-toggle="modal" data-bs-target="#deleteModal" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}">
                         <iconify-icon icon="ic:baseline-delete-forever" style="color: red;" width="25" height="25"></iconify-icon>
                     </button>
                 </td>
@@ -98,19 +99,36 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center">
-            <div class="modal-body pt-5">
-                <iconify-icon icon="material-symbols:delete-rounded" style="color: red;" width="75" height="75"></iconify-icon>
-                <h4 class="mt-3">Apakah Anda Yakin?</h4>
-                <p class="mt-3">Apakah Anda benar-benar ingin menghapus Produk ini? Proses ini tidak dapat dibatalkan</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color:#6C63FF;">Close</button>
-                <button type="button" class="btn btn-primary" style="background-color:red;">Hapus</button>
-            </div>
+            <form method="POST" id="delete-form">
+                {{ csrfField() }}
+                <div class="modal-body pt-5">
+                    <iconify-icon icon="material-symbols:delete-rounded" style="color: red;" width="75" height="75"></iconify-icon>
+                    <h4 class="mt-3">Apakah Anda Yakin?</h4>
+                    <p class="mt-3" id="message">Apakah Anda benar-benar ingin menghapus Produk ini? Proses ini tidak dapat dibatalkan</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color:#6C63FF;">Batal</button>
+                    <button type="submit" class="btn btn-primary" style="background-color:red;">Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    const buttons = document.querySelectorAll('.delete')
+    const form = document.querySelector('#delete-form')
+    const message = document.querySelector('#message')
+    buttons.forEach((button)=>{
+        button.addEventListener('click', (e)=>{
+            form.setAttribute('action', `/admin/${button.getAttribute('data-product-id')}?_method=DELETE`)
+            message.innerHTML = `Apakah Anda benar-benar ingin menghapus <b>${button.getAttribute('data-product-name')}</b>? Proses ini tidak dapat dibatalkan`
+        })
+    })
+</script>
 @endsection
