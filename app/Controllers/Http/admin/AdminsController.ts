@@ -4,6 +4,7 @@ import Application from '@ioc:Adonis/Core/Application'
 import ProductValidator from 'App/Validators/ProductValidator'
 import Product from 'App/Models/Product'
 import ProductImage from 'App/Models/ProductImage'
+import Category from 'App/Models/Category'
 
 export default class AdminsController {
     public async index({ view }:HttpContextContract){
@@ -16,8 +17,11 @@ export default class AdminsController {
     }
 
     public async create({view}: HttpContextContract) {
+        const categories = await Category.query().orderBy('name', 'asc')
+
         return view.render('admin/admin-create', {
-            title: 'Product'
+            title: 'Product',
+            categories
         })
     }
     
@@ -41,6 +45,7 @@ export default class AdminsController {
         const product = await Product.create({
             name: request.input('name'),
             description: request.input('description'),
+            category_id: request.input('category_id'),
             wa_number: request.input('wa_number'),
             price: request.input('price'),
         })

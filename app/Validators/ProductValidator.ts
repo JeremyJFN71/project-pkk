@@ -26,6 +26,7 @@ export default class ProductValidator {
   public schema = schema.create({
     name: schema.string(),
     description: schema.string(),
+    category_id: schema.number(),
     wa_number: schema.string([
       rules.mobile({
         locale: ['id-ID']
@@ -48,6 +49,7 @@ export default class ProductValidator {
   public messages: CustomMessages = {
     'name.required': 'Kolom Nama wajib diisi',
     'description.required': 'Kolom Deskripsi wajib diisi',
+    'category_id.required': 'Kolom Kategori wajib diisi',
     'wa_number.required': 'Kolom Nomor WA wajib diisi',
     'wa_number.mobile': 'Nomor WA tidak valid',
     'price.required': 'Kolom Harga wajib diisi',

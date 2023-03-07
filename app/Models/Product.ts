@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import ProductImage from './ProductImage'
+import Category from './Category'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -11,6 +12,9 @@ export default class Product extends BaseModel {
 
   @column()
   public description: string
+
+  @column()
+  public category_id: number
 
   @column()
   public wa_number: string
@@ -28,4 +32,9 @@ export default class Product extends BaseModel {
     foreignKey: 'product_id'
   })
   public images: HasMany<typeof ProductImage>
+
+  @belongsTo(() => Category, {
+    localKey: 'category_id'
+  })
+  public product: BelongsTo<typeof Category>
 }
