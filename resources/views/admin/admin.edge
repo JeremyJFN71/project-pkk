@@ -9,14 +9,24 @@
         .add {
             display: flex;
             background: #6C74FF;
-            padding: 10px 5px;
+            padding: 15px 5px;
             font-size: 15px;
             border-radius: 10px;
             border: none;
         }
 
+
         .add:hover {
             background: #6C63FF;
+        }
+
+        .add2 {
+            display: flex;
+            background-color: red;
+            padding: 10px 5px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: none;
         }
 
         .add-button {
@@ -35,10 +45,17 @@
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
     <div class="add-button">
+
         
-        <button onclick="window.location.href = '{{ route('admin.create') }}'" class="add mb-3">
+        <button onclick="window.location.href = '{{ route('admin.create') }}'" class="add mx-3 mb-3">
             <p>Tambah Produk</p>
-            <iconify-icon icon="material-symbols:add" style="color: white;" width="20" height="20"></iconify-icon>
+            <iconify-icon icon="material-symbols:add" class="text-center align-middle" style="color: white;" width="20" height="20"></iconify-icon>
+        </button>
+
+    
+        <button class="add2 mb-3 text-white">
+            <p class="mb-0 mx-2">Keluar</p>
+            <iconify-icon icon="heroicons-outline:logout" width="25" height="25"></iconify-icon>
         </button>
     </div>
     <table class="table table-bordered text-center align-middle bg-secondary-subtle">
