@@ -5,6 +5,10 @@
     .form-control, .form-select {
         border-radius: 30px;
     }
+
+    .modal::-webkit-scrollbar{
+        display: none;
+    }
 </style>
 @endsection
 
@@ -60,7 +64,7 @@
                     </div>
                     <div class="col-lg-10">
                         <select class="form-select" name="category_id" id="category_id">
-                            <option value="">Pilih Kategori Produk</option>
+                            <option value="" disabled selected>Pilih Kategori Produk</option>
                             @each(category in categories)
                                 <option value="{{ category.id }}" {{ (flashMessages.get('category_id')==category.id ? 'selected' : '') }}>{{ category.name }}</option>
                             @endeach
