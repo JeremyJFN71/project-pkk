@@ -35,6 +35,8 @@ Route.get('/item', async ({ view }) => {
 Route.get('/product', 'ProductsController.index')
 Route.get('/product/:id', 'ProductsController.show')
 
+Route.get('/admin/logout', 'admin/LoginController.logout').as('logout')
+
 // No login Required
 Route.group(()=>{
   Route.get('/admin/login', 'admin/LoginController.index')
@@ -45,5 +47,3 @@ Route.group(()=>{
 Route.group(()=>{
   Route.resource('/admin', 'admin/AdminsController').as('admin')
 }).middleware('auth:web')
-
-Route.get('/admin/logout', 'admin/LoginController.logout')
