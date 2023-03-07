@@ -60,7 +60,11 @@ export default class AdminsController {
 
     public async show({}: HttpContextContract) {}
 
-    public async edit({}: HttpContextContract) {}
+    public async edit({ view }: HttpContextContract) {
+        return view.render('admin/admin-edit', {
+            title: 'Edit Produk'
+        })
+    }
 
     public async update({}: HttpContextContract) {}
 
