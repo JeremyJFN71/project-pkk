@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.integer('category_id').unsigned()
       table.string('wa_number')
       table.integer('price')
+      table.string('slug')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

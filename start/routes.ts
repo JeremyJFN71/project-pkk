@@ -33,7 +33,7 @@ Route.get('/item', async ({ view }) => {
 })
 
 Route.get('/product', 'ProductsController.index')
-Route.get('/product/:id', 'ProductsController.show')
+Route.get('/product/:slug', 'ProductsController.show')
 
 Route.get('/admin/logout', 'admin/LoginController.logout').as('logout')
 

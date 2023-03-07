@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
+
 import Product from './Product'
 
 export default class Category extends BaseModel {
@@ -10,6 +12,10 @@ export default class Category extends BaseModel {
   public name: string
 
   @column()
+  @slugify({
+    strategy: 'dbIncrement',
+    fields: ['name']
+  })
   public slug: string
 
   @column.dateTime({ autoCreate: true })

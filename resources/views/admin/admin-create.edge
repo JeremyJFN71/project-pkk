@@ -21,7 +21,7 @@
                         <label style="font-size: 17px" for="name">Nama Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="name" name="name" class="form-control">
+                        <input type="text" id="name" name="name" class="form-control" value="{{ flashMessages.get('name') || '' }}">
                         @if(flashMessages.has('errors.name'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.name') }}</div>
                         @endif
@@ -42,13 +42,12 @@
                     </div>
                 </div>
 
-
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
                         <label style="font-size: 17px" for="description">Deskripsi</label>
                     </div>
                     <div class="col-lg-10">
-                        <textarea name="description" id="description" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="3" class="form-control">{{ flashMessages.get('description') || '' }}</textarea>
                         @if(flashMessages.has('errors.description'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.description') }}</div>
                         @endif
@@ -61,9 +60,9 @@
                     </div>
                     <div class="col-lg-10">
                         <select class="form-select" name="category_id" id="category_id">
-                            <option value="" disabled selected>Pilih Kategori Produk</option>
+                            <option value="">Pilih Kategori Produk</option>
                             @each(category in categories)
-                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                <option value="{{ category.id }}" {{ (flashMessages.get('category_id')==category.id ? 'selected' : '') }}>{{ category.name }}</option>
                             @endeach
                         </select>
                         @if(flashMessages.has('errors.category_id'))
@@ -77,7 +76,7 @@
                         <label style="font-size: 17px" for="wa_number">Nomor WA</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="wa_number" name="wa_number" class="form-control">
+                        <input type="text" id="wa_number" name="wa_number" class="form-control" value="{{ flashMessages.get('wa_number') || '' }}">
                         @if(flashMessages.has('errors.wa_number'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.wa_number') }}</div>
                         @endif
@@ -88,7 +87,7 @@
                         <label style="font-size: 17px" for="price">Harga</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="price" name="price" class="form-control">
+                        <input type="text" id="price" name="price" class="form-control" value="{{ flashMessages.get('price') || '' }}">
                         @if(flashMessages.has('errors.price'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.price') }}</div>
                         @endif
@@ -108,8 +107,12 @@
 </div>
 
 {{--  Modal image preview  --}}
-<div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
+<div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true" style="
+    background: linear-gradient(0deg, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.4) 95%);">
+    <div class="d-flex justify-content-between p-3 fixed-top" data-bs-theme="dark">
+        <span id="name-modal" class="fw-bold text-white"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="background-color: rgba(0,0,0,0); border: none;">
             <img id="image-modal" src="" alt="">
@@ -120,18 +123,20 @@
 
 @section('scripts')
 <script>
+    // Preview Image
     const imgBtn = document.querySelector('#image-buttons')
     const imgMod = document.querySelector('#image-modal')
+    const nameMod = document.querySelector('#name-modal')
 
     function imagePreview(e){
-        const inputs = e.target.files
+        const fileInput = e.target.files
 
         let btn = '';
         let images = [];
         let count = 0;
 
-        for (i of inputs) {
-            console.log(i)
+        // Image preview button
+        for (i of fileInput) {
             btn += `<div class="me-2 mb-2">
                         <button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>
                     </div>`
@@ -144,17 +149,37 @@
         }
         imgBtn.innerHTML = btn
 
+        // Modal
         const buttons = imgBtn.querySelectorAll('.image-btn')
         buttons.forEach((button)=>{
             button.addEventListener('click', (e)=>{
                 const image = images[e.target.dataset.index];
+                nameMod.innerText = image.name;
                 imgMod.src = image.url;
             })
         })
     }
 
-    document.querySelector('button[type="reset"]').addEventListener('click', (e)=>{
-        imgBtn.innerHTML = ''
+    // Reset Form
+    const btnReset = document.querySelector('button[type="reset"]');
+    const inputs = document.querySelectorAll('.form-control');
+    const categories = document.querySelectorAll('.form-select option');
+    
+    btnReset.addEventListener('click', function(e){
+        imgBtn.innerHTML = '';
+
+        inputs.forEach((input)=>{
+            input.setAttribute('value', '');
+            input.innerText = '';
+        });
+
+        categories.forEach((category)=>{
+            if(category.getAttribute('value')===''){
+                category.setAttribute('selected', 'selected');
+            } else{
+                category.removeAttribute('selected');
+            }
+        });
     })
 </script>
 @endsection

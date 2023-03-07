@@ -34,7 +34,7 @@ export default class AdminsController {
         }
         for (let image of images) {
             if(!image.isValid){
-            session.flash('images', 'File harus berekstensi jpg, jpeg, png, atau jfif')
+                session.flash('images', 'File harus berekstensi jpg, jpeg, png, atau jfif')
             }
         }
         await request.validate(ProductValidator)
@@ -81,24 +81,47 @@ export default class AdminsController {
     }
 
     public async update({ request, session, response, params }: HttpContextContract) {
+        const product = await Product.find(params.id)
+        const productImages = await ProductImage.query().where('product_id', product?.id)
+
         // Validation
         const images = request.files('images', {
             extnames: ['jpg', 'jpeg', 'png', 'jfif']
         })
-        if(!images[0]){
-            session.flash('images', 'Kolom Gambar Produk wajib diisi')
-        }
-        for (let image of images) {
-            if(!image.isValid){
-            session.flash('images', 'File harus berekstensi jpg, jpeg, png, atau jfif')
+        await request.validate(ProductValidator)
+        // End of validation
+
+        if(images[0]){
+            for (let image of images) {
+                // if image not valid
+                if(!image.isValid){
+                    session.flash('images', 'File harus berekstensi jpg, jpeg, png, atau jfif')
+                    return response.redirect(`/admin/${params.id}/edit`)
+                }
+
+                // Update Product
+                await image.moveToDisk('./', {name: image.fileName})
+                await ProductImage.create({
+                    image: `/uploads/${image.fileName}`,
+                    product_id: product?.id,
+                })
+            }
+
+            for (let productImage of productImages){
+                await productImage.delete()
             }
         }
-        await request.validate(ProductValidator)
 
-        if(!images[0]){
-            return response.redirect(`/admin/${params.id}/edit`)
-        }
-        // End of validation
+        // Update Product
+        await product?.merge({
+            name: request.input('name'),
+            description: request.input('description'),
+            category_id: request.input('category_id'),
+            wa_number: request.input('wa_number'),
+            price: request.input('price'),
+        }).save()
+
+        return response.redirect('/admin')
     }
 
     public async destroy({params, response}: HttpContextContract) {

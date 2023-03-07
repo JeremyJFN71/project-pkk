@@ -20,7 +20,7 @@
                         <label style="font-size: 17px;" for="name">Nama Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="name" name="name" class="form-control input" value="{{ product.name }}">
+                        <input type="text" id="name" name="name" class="form-control" value="{{ product.name }}">
                         @if(flashMessages.has('errors.name'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.name') }}</div>
                         @endif
@@ -32,10 +32,12 @@
                         <label style="font-size: 17px;" for="images">Gambar Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="file" id="images" name="images" class="form-control input" accept="image/*" multiple>
+                        <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple onchange="imagePreview(event)">
                         @if(flashMessages.has('images'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('images') }}</div>
                         @endif
+                        <div class="d-flex flex-wrap mt-2" id="image-buttons">
+                        </div>
                     </div>
                 </div>
 
@@ -44,7 +46,7 @@
                         <label style="font-size: 17px;" for="description">Deskripsi</label>
                     </div>
                     <div class="col-lg-10">
-                        <textarea name="description" id="description" cols="30" rows="3" class="form-control input">{{ product.description }}</textarea>
+                        <textarea name="description" id="description" cols="30" rows="3" class="form-control">{{ product.description }}</textarea>
                         @if(flashMessages.has('errors.description'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.description') }}</div>
                         @endif
@@ -73,7 +75,7 @@
                         <label style="font-size: 17px;" for="wa_number">Nomor WA</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="wa_number" name="wa_number" class="form-control input" value="{{ product.wa_number }}">
+                        <input type="text" id="wa_number" name="wa_number" class="form-control" value="{{ product.wa_number }}">
                         @if(flashMessages.has('errors.wa_number'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.wa_number') }}</div>
                         @endif
@@ -85,7 +87,7 @@
                         <label style="font-size: 17px;" for="price">Harga</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="price" name="price" class="form-control input" value="{{ product.price }}">
+                        <input type="text" id="price" name="price" class="form-control" value="{{ product.price }}">
                         @if(flashMessages.has('errors.price'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('errors.price') }}</div>
                         @endif
@@ -93,7 +95,7 @@
                 </div>
 
                 <div class="d-flex p-2">
-                    <button type="button" class="reset me-auto mx-2 py-2 mt-3 border-0 text-white text-center align-middle bg-secondary" style="border-radius:10px;width:150px; height:40px">Kosongkan</button>
+                    <button type="reset" class="me-auto mx-2 py-2 mt-3 border-0 text-white text-center align-middle bg-secondary" style="border-radius:10px;width:150px; height:40px">Kosongkan</button>
                     <a href="/admin" class=" mt-3 mx-4 py-2 border-0 text-white text-center align-middle text-decoration-none" style="background-color:red;border-radius:10px;width:150px;">Batal</a>
                     <button type="submit" class=" mt-3 py-2 border-0 text-white text-center align-middle" style="background-color:#6C63FF;border-radius:10px;width:150px">Simpan</button>
                 </div>
@@ -102,15 +104,69 @@
         </div>
     </div>
 </div>
+
+{{--  Modal image preview  --}}
+<div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true" style="
+    background: linear-gradient(0deg, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.4) 95%);">
+    <div class="d-flex justify-content-between p-3 fixed-top" data-bs-theme="dark">
+        <span id="name-modal" class="fw-bold text-white"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: rgba(0,0,0,0); border: none;">
+            <img id="image-modal" src="" alt="">
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
 <script>
-    const btnReset = document.querySelector('.reset');
-    const inputs = document.querySelectorAll('.input');
+    // Preview Image
+    const imgBtn = document.querySelector('#image-buttons')
+    const imgMod = document.querySelector('#image-modal')
+    const nameMod = document.querySelector('#name-modal')
+
+    function imagePreview(e){
+        const fileInput = e.target.files
+
+        let btn = '';
+        let images = [];
+        let count = 0;
+
+        // Image preview button
+        for (i of fileInput) {
+            btn += `<div class="me-2 mb-2">
+                        <button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>
+                    </div>`
+
+            images.push({
+                name: i.name,
+                url: URL.createObjectURL(i)
+            })
+            count++
+        }
+        imgBtn.innerHTML = btn
+
+        // Modal
+        const buttons = imgBtn.querySelectorAll('.image-btn')
+        buttons.forEach((button)=>{
+            button.addEventListener('click', (e)=>{
+                const image = images[e.target.dataset.index];
+                nameMod.innerText = image.name;
+                imgMod.src = image.url;
+            })
+        })
+    }
+
+    // Reset Form
+    const btnReset = document.querySelector('button[type="reset"]');
+    const inputs = document.querySelectorAll('.form-control');
     const categories = document.querySelectorAll('.form-select option');
     
     btnReset.addEventListener('click', function(e){
+        imgBtn.innerHTML = '';
+
         inputs.forEach((input)=>{
             input.setAttribute('value', '');
             input.innerText = '';

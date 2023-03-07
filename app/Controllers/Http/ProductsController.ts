@@ -11,7 +11,7 @@ export default class ProductsController {
       const category = await Category.findBy('slug', request.qs().category)
       try {
         products = await Product.query().preload('images').where('category_id', category?.id).orderBy('id', 'desc')
-      } catch (error) {
+      } catch {
         products = []
       }
     }
@@ -24,7 +24,7 @@ export default class ProductsController {
   }
 
   public async show({ view, params, request }: HttpContextContract) {
-    const product = await Product.find(params.id)
+    const product = await Product.findBy('slug', params.slug)
     await product?.load('images')
     const href = `https://wa.me/62${product?.wa_number}/?text=Saya%20ingin%20membeli%20${product?.name}%0A${request.completeUrl()}`
 

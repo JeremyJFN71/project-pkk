@@ -25,7 +25,8 @@
     "@adonisjs/shield",
     "@adonisjs/lucid",
     "@adonisjs/auth",
-    "@adonisjs/i18n"
+    "@adonisjs/i18n",
+    "@adonisjs/lucid-slugify"
   ],
   "metaFiles": [
     {

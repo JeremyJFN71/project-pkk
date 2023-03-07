@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, hasMany, HasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
+
 import ProductImage from './ProductImage'
 import Category from './Category'
 
@@ -21,6 +23,13 @@ export default class Product extends BaseModel {
 
   @column()
   public price: number
+
+  @column()
+  @slugify({
+    strategy: 'dbIncrement',
+    fields: ['name']
+  })
+  public slug: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
