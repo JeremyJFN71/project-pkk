@@ -132,7 +132,7 @@
 
         for (i of inputs) {
             console.log(i)
-            btn += `<div class="ms-2 mb-2">
+            btn += `<div class="me-2 mb-2">
                         <button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>
                     </div>`
 
@@ -152,5 +152,9 @@
             })
         })
     }
+
+    document.querySelector('button[type="reset"]').addEventListener('click', (e)=>{
+        imgBtn.innerHTML = ''
+    })
 </script>
 @endsection
