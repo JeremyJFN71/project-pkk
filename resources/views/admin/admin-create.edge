@@ -18,7 +18,7 @@
                 {{ csrfField() }}
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="name">Nama Produk</label>
+                        <label style="font-size: 17px" for="name">Nama Produk</label>
                     </div>
                     <div class="col-lg-10">
                         <input type="text" id="name" name="name" class="form-control">
@@ -30,19 +30,22 @@
 
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="images">Gambar Produk</label>
+                        <label style="font-size: 17px" for="images">Gambar Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple>
+                        <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple onchange="imagePreview(event)">
                         @if(flashMessages.has('images'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('images') }}</div>
                         @endif
+                        <div class="d-flex flex-wrap mt-2" id="image-buttons">
+                        </div>
                     </div>
                 </div>
 
+
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="description">Deskripsi</label>
+                        <label style="font-size: 17px" for="description">Deskripsi</label>
                     </div>
                     <div class="col-lg-10">
                         <textarea name="description" id="description" cols="30" rows="3" class="form-control"></textarea>
@@ -54,7 +57,7 @@
 
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="category_id">Kategori</label>
+                        <label style="font-size: 17px" for="category_id">Kategori</label>
                     </div>
                     <div class="col-lg-10">
                         <select class="form-select" name="category_id" id="category_id">
@@ -71,7 +74,7 @@
 
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="wa_number">Nomor WA</label>
+                        <label style="font-size: 17px" for="wa_number">Nomor WA</label>
                     </div>
                     <div class="col-lg-10">
                         <input type="text" id="wa_number" name="wa_number" class="form-control">
@@ -82,7 +85,7 @@
                 </div>
                 <div class="mb-4 row">
                     <div class="col-lg-2 mb-2">
-                        <label class="fs-5" style="width:200px" for="price">Harga</label>
+                        <label style="font-size: 17px" for="price">Harga</label>
                     </div>
                     <div class="col-lg-10">
                         <input type="text" id="price" name="price" class="form-control">
@@ -103,4 +106,51 @@
         </div>
     </div>
 </div>
+
+{{--  Modal image preview  --}}
+<div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: rgba(0,0,0,0); border: none;">
+            <img id="image-modal" src="" alt="">
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    const imgBtn = document.querySelector('#image-buttons')
+    const imgMod = document.querySelector('#image-modal')
+
+    function imagePreview(e){
+        const inputs = e.target.files
+
+        let btn = '';
+        let images = [];
+        let count = 0;
+
+        for (i of inputs) {
+            console.log(i)
+            btn += `<div class="ms-2 mb-2">
+                        <button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>
+                    </div>`
+
+            images.push({
+                name: i.name,
+                url: URL.createObjectURL(i)
+            })
+            count++
+        }
+        imgBtn.innerHTML = btn
+
+        const buttons = imgBtn.querySelectorAll('.image-btn')
+        buttons.forEach((button)=>{
+            button.addEventListener('click', (e)=>{
+                const image = images[e.target.dataset.index];
+                imgMod.src = image.url;
+            })
+        })
+    }
+</script>
 @endsection

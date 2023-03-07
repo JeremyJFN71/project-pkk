@@ -1,5 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Application from '@ioc:Adonis/Core/Application'
 
 import ProductValidator from 'App/Validators/ProductValidator'
 import Product from 'App/Models/Product'
@@ -57,7 +56,7 @@ export default class AdminsController {
         
         // Create Product Image
         for (let image of images) {      
-            await image.move(Application.tmpPath('uploads'))
+            await image.moveToDisk('./', {name: image.fileName})
             await ProductImage.create({
                 image: `/uploads/${image.fileName}`,
                 product_id: product.id,
