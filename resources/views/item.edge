@@ -31,7 +31,7 @@
                     @if(product.images.length===1)
                         <img class="card-img-top mb-5 mb-md-0 shadow img-card" src="{{ product.images[0].image }}" alt="..." style="aspect-ratio: 6/7; object-fit: cover;" />
                     @else
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div id="carouselExampleIndicators" class="shadow carousel slide" data-bs-ride="true">
                         <div class="carousel-indicators">
                             @each((image, index) in product.images)
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ index }}" class="{{index===0? 'active': ''}}" aria-current="{{index===0? 'true': ''}}" aria-label="Slide {{ index+1 }}"></button>
