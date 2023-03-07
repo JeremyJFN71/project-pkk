@@ -44,7 +44,7 @@
                         @if(flashMessages.has('images'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('images') }}</div>
                         @endif
-                        <div class="d-flex flex-wrap mt-2" id="image-buttons"></div>
+                        <div class="d-flex flex-wrap mt-2 gap-2" id="image-buttons"></div>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
 
 {{--  Modal image preview  --}}
 <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true" style="
-    background: linear-gradient(0deg, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.4) 95%);">
+    background: rgba(0,0,0,0.7);">
     <div class="d-flex justify-content-between p-3 fixed-top" data-bs-theme="dark">
         <span id="name-modal" class="fw-bold text-white"></span>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -128,68 +128,5 @@
 @endsection
 
 @section('scripts')
-<script>
-    // Preview Image
-    const imgBtn = document.querySelector('#image-buttons')
-    const imgLen = document.querySelector('#image-length')
-    const imgMod = document.querySelector('#image-modal')
-    const nameMod = document.querySelector('#name-modal')
-
-    function imagePreview(e){
-        const fileInput = e.target.files
-
-        imgLen.innerText = `${fileInput.length} files`
-
-        let btn = '';
-        let images = [];
-        let count = 0;
-
-        // Image preview button
-        for (i of fileInput) {
-            btn += `<div class="me-2 mb-2">
-                        <button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>
-                    </div>`
-
-            images.push({
-                name: i.name,
-                url: URL.createObjectURL(i)
-            })
-            count++
-        }
-        imgBtn.innerHTML = btn
-
-        // Modal
-        const buttons = imgBtn.querySelectorAll('.image-btn')
-        buttons.forEach((button)=>{
-            button.addEventListener('click', (e)=>{
-                const image = images[e.target.dataset.index];
-                nameMod.innerText = image.name;
-                imgMod.src = image.url;
-            })
-        })
-    }
-
-    // Reset Form
-    const btnReset = document.querySelector('button[type="reset"]');
-    const inputs = document.querySelectorAll('.form-control');
-    const categories = document.querySelectorAll('.form-select option');
-    
-    btnReset.addEventListener('click', function(e){
-        imgLen.innerText = 'No file choosen'
-        imgBtn.innerHTML = '';
-
-        inputs.forEach((input)=>{
-            input.setAttribute('value', '');
-            input.innerText = '';
-        });
-
-        categories.forEach((category)=>{
-            if(category.getAttribute('value')===''){
-                category.setAttribute('selected', 'selected');
-            } else{
-                category.removeAttribute('selected');
-            }
-        });
-    })
-</script>
+<script src="/js/scripts.js"></script>
 @endsection
