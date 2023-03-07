@@ -25,9 +25,9 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fs-1 fw-bold">Products</h2>
                 <select class="form-select" style="width: 200px;" name="category" id="category">
-                    <option value="Semua">Semua</option>
+                    <option value="">Semua</option>
                     @each(category in categories)
-                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        <option value="{{ category.slug }}" {{ request.qs().category===category.slug ? 'selected' : '' }}>{{ category.name }}</option>
                     @endeach
                 </select>
             </div>
@@ -64,7 +64,11 @@
     <script>
         const category = document.querySelector('#category')
         category.addEventListener('change', (e)=>{
-            console.log(e.target.value)
+            if(e.target.value){
+                window.location.href = `/product?category=${e.target.value}`
+            } else{
+                window.location.href = '/product'
+            }
         })
     </script>
 @endsection

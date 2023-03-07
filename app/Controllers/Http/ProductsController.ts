@@ -6,9 +6,14 @@ export default class ProductsController {
   public async index({ view, request }: HttpContextContract) {
     const categories = await Category.query().orderBy('name', 'asc')
     let products = await Product.query().preload('images').orderBy('id', 'desc')
+
     if (request.qs().category){
-      // Category.
-      products = await Product.query().preload('images').where('category_id', request.qs().category).orderBy('id', 'desc')
+      const category = await Category.findBy('slug', request.qs().category)
+      try {
+        products = await Product.query().preload('images').where('category_id', category?.id).orderBy('id', 'desc')
+      } catch (error) {
+        products = []
+      }
     }
 
     return view.render('product', {
