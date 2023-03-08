@@ -1,14 +1,6 @@
 @layout('layouts/nonavfooter')
 
 @section('content')
-@if(flashMessages.has('success_logout'))
-{{--  Allert  --}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{{ flashMessages.get('success_logout') }}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
-
 <div class="container rounded-3 p-5 shadow" style="max-width: 600px; margin-top: 80px;">
     <h1 class="fw-bold text-center mb-5">Masuk Sebagai Admin</h1>
     <form method="POST">

@@ -44,7 +44,6 @@ export default class AdminsController {
         }
         // End of validation
 
-        
         // Create product
         const product = await Product.create({
             name: request.input('name'),
@@ -64,6 +63,7 @@ export default class AdminsController {
         }
 
         // Redirect
+        session.flash('success', 'Produk berhasil ditambahkan')
         return response.redirect('/admin')
     }
 
@@ -121,13 +121,17 @@ export default class AdminsController {
             price: request.input('price'),
         }).save()
 
+        // Redirect
+        session.flash('success', 'Produk berhasil diubah')
         return response.redirect('/admin')
     }
 
-    public async destroy({params, response}: HttpContextContract) {
+    public async destroy({params, response, session}: HttpContextContract) {
         const product = await Product.find(params.id)
         product?.delete()
 
+        // Redirect
+        session.flash('success', 'Produk berhasil dihapus')
         return response.redirect('/admin')
     }
 }

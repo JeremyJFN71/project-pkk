@@ -20,16 +20,13 @@
             transition: 0.5s;
         }
 
-        .upload:focus {
-            background: #38357a;
-        }
-
         textarea{
             resize: none;
         }
     </style>
 </head>
 <body>
+    @include('partials/messages')
     @!section('content')
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

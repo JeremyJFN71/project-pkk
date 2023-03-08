@@ -60,14 +60,6 @@
 @endsection
 
 @section('content')
-@if(flashMessages.has('success_login'))
-{{--  Allert  --}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{{ flashMessages.get('success_login') }}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
-
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
     <div class="d-flex justify-content-end gap-2">
