@@ -1,13 +1,23 @@
-// Preview Image
 const imgBtn = document.querySelector('#image-buttons')
 const imgLen = document.querySelector('#image-length')
 const imgMod = document.querySelector('#image-modal')
 const nameMod = document.querySelector('#name-modal')
 
+const btnReset = document.querySelector('button[type="reset"]');
+const inputs = document.querySelectorAll('.form-control');
+const categories = document.querySelectorAll('.form-select option');
+
+const textarea = document.querySelector('textarea')
+
+// Preview Image
 function imagePreview(e){
     const fileInput = e.target.files;
 
-    imgLen.innerText = `${fileInput.length} files`;
+    if (!fileInput.length){
+        imgLen.innerText = 'No file choosen'
+    } else{
+        imgLen.innerText = `${fileInput.length} files`;
+    }
 
     let btn = '';
     let images = [];
@@ -15,7 +25,7 @@ function imagePreview(e){
 
     // Image preview button
     for (let i of fileInput) {
-        btn += `<button type="button" data-index="${count}" class="image-btn py-2" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>`
+        btn += `<button type="button" data-index="${count}" class="image-btn py-2 mt-2" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>`
 
         images.push({
             name: i.name,
@@ -37,13 +47,10 @@ function imagePreview(e){
 }
 
 // Reset Form
-const btnReset = document.querySelector('button[type="reset"]');
-const inputs = document.querySelectorAll('.form-control');
-const categories = document.querySelectorAll('.form-select option');
-
 btnReset.addEventListener('click', function(e){
     imgLen.innerText = 'No file choosen'
     imgBtn.innerHTML = '';
+    textarea.style.height = 0;
 
     inputs.forEach((input)=>{
         input.setAttribute('value', '');
@@ -60,10 +67,8 @@ btnReset.addEventListener('click', function(e){
 })
 
 // Auto resize textarea
-const textarea = document.querySelectorAll('textarea')
-textarea.forEach(function () {
-    this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
-}).on("input", function () {
-    this.style.height = 0;
-    this.style.height = (this.scrollHeight) + "px";
+textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
+textarea.addEventListener('input', function (e) {
+    e.target.style.height = 0;
+    e.target.style.height = (e.target.scrollHeight) + "px";
 });

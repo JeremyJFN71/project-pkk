@@ -1,82 +1,62 @@
 @layout('layouts/admin')
 
 @section('styles')
-    <style>
-        .tabel {
-            margin: 80px auto;
-        }
+<style>
+    .tabel {
+        margin: 80px auto;
+    }
 
-        .add {
-            display: flex;
-            background: #6C74FF;
-            align-items: center;
-            padding: 10px 5px;
-            font-size: 18px;
-            border-radius: 10px;
-            border: none;
-        }
+    .add {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: none;
+    }
 
-        .add:hover {
-            background: #6C63FF;
-        }
+    .add p {
+        color: #ffffff;
+    }
 
-        .add2 {
-            display: flex;
-            background-color: red;
-            align-items: center;
-            padding: 10px 5px;
-            font-size: 18px;
-            border-radius: 10px;
-            border: none;
-        }
+    .product-name {
+        background-image: linear-gradient(
+        to right,
+        #6C63FF,
+        #6C63FF 50%,
+        #000 50%
+        );
+        background-size: 200% 100%;
+        background-position: -100%;
+        display: inline-block;
+        padding: 5px 0;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease-in-out;
+    }
 
-        .add-button {
-            display: flex;
-            justify-content: end;
-        }
+    .product-name:before{
+        content: '';
+        background: #6C63FF;
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+    }
 
-        .add p {
-            margin: auto 10px;
-            color: #ffffff;
-        }
+    .product-name:hover {
+        background-position: 0;
+    }
 
-        .product-name {
-          background-image: linear-gradient(
-            to right,
-            #6C63FF,
-            #6C63FF 50%,
-            #000 50%
-          );
-          background-size: 200% 100%;
-          background-position: -100%;
-          display: inline-block;
-          padding: 5px 0;
-          position: relative;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          transition: all 0.3s ease-in-out;
-        }
-
-        .product-name:before{
-          content: '';
-          background: #6C63FF;
-          display: block;
-          position: absolute;
-          bottom: -3px;
-          left: 0;
-          width: 0;
-          height: 3px;
-          transition: all 0.3s ease-in-out;
-        }
-
-        .product-name:hover {
-         background-position: 0;
-        }
-
-        .product-name:hover::before{
-          width: 100%;
-        }
-   </style>
+    .product-name:hover::before{
+        width: 100%;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -90,17 +70,17 @@
 
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
-    <div class="add-button">
+    <div class="d-flex justify-content-end gap-2">
         
-        <button onclick="window.location.href='{{ route('admin.create') }}'" class="add mx-3 mb-3 upload">
+        <button onclick="window.location.href='{{ route('admin.create') }}'" class="add mb-3 upload">
+            <iconify-icon icon="material-symbols:add" width="25" height="25"></iconify-icon>
             <p class="my-0">Tambah Produk</p>
-            <iconify-icon icon="material-symbols:add" class="text-center align-middle mx-1" style="color: white;" width="24" height="24"></iconify-icon>
         </button>
 
     
-        <button onclick="window.location.href='{{ route('logout') }}'" class="add2 mb-3 text-white p-3 btn btn-danger">
-            <p class="mb-0 mx-2">Keluar</p>
+        <button onclick="window.location.href='{{ route('logout') }}'" class="add mb-3 text-white btn btn-danger">
             <iconify-icon icon="heroicons-outline:logout" width="25" height="25"></iconify-icon>
+            <p class="my-0">Keluar</p>
         </button>
     </div>
     <table class="table table-bordered text-center align-middle bg-secondary-subtle">

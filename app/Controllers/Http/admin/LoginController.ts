@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import LoginValidator from 'App/Validators/LoginValidator'
-import session from 'Config/session'
 
 export default class LoginController {
     public async index({ view }:HttpContextContract){
