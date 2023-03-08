@@ -43,10 +43,11 @@ export default class extends BaseSeeder {
       },
       {
         name: 'SIJA AIThreads Black T-Shirt',
-        description: `Kaos tema AI Threads adalah kaos dengan desain yang terinspirasi oleh perkembangan teknologi kecerdasan buatan (AI) dan Sistem Infromasi Jaringan dan Aplikasi(SIJA). Kaos ini menggunakan gambar atau grafik yang menunjukkan berbagai penjelasan tentang Kelas XII SIJA 2 dan teknologi AI.`,
+        description: `Kaos tema AI Threads adalah kaos dengan desain yang terinspirasi oleh perkembangan teknologi kecerdasan buatan (AI) dan Sistem Infromasi Jaringan dan Aplikasi(SIJA). Kaos ini menggunakan gambar atau grafik yang menunjukkan berbagai penjelasan tentang Kelas XII SIJA 2 dan teknologi AI.
+SIZE XL, L, M dan S`,
         category_id: 1,
         wa_number: '085717919259',
-        price: 89999
+        price: 69999
       },
       {
         name: "O'Sweats",
