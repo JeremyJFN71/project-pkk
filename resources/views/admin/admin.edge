@@ -38,16 +38,43 @@
             color: #ffffff;
         }
 
-        .product-name{
-            color: black;
-            text-decoration: none;
+        .product-name {
+          background-image: linear-gradient(
+            to right,
+            #6C63FF,
+            #6C63FF 50%,
+            #000 50%
+          );
+          background-size: 200% 100%;
+          background-position: -100%;
+          display: inline-block;
+          padding: 5px 0;
+          position: relative;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          transition: all 0.3s ease-in-out;
         }
 
-        .product-name:hover{
-            text-decoration: underline;
-            transition: 1s;
+        .product-name:before{
+          content: '';
+          background: #6C63FF;
+          display: block;
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          width: 0;
+          height: 3px;
+          transition: all 0.3s ease-in-out;
         }
-    </style>
+
+        .product-name:hover {
+         background-position: 0;
+        }
+
+        .product-name:hover::before{
+          width: 100%;
+        }
+   </style>
 @endsection
 
 @section('content')
@@ -56,13 +83,13 @@
     <div class="add-button">
 
         
-        <button onclick="window.location.href='{{ route('admin.create') }}'" class="add mx-3 mb-3">
+        <button onclick="window.location.href='{{ route('admin.create') }}'" class="add mx-3 mb-3 upload">
             <p class="my-0">Tambah Produk</p>
             <iconify-icon icon="material-symbols:add" class="text-center align-middle mx-1" style="color: white;" width="24" height="24"></iconify-icon>
         </button>
 
     
-        <button onclick="window.location.href='{{ route('logout') }}'" class="add2 mb-3 text-white p-3">
+        <button onclick="window.location.href='{{ route('logout') }}'" class="add2 mb-3 text-white p-3 btn btn-danger">
             <p class="mb-0 mx-2">Keluar</p>
             <iconify-icon icon="heroicons-outline:logout" width="25" height="25"></iconify-icon>
         </button>

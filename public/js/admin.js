@@ -15,7 +15,7 @@ function imagePreview(e){
 
     // Image preview button
     for (let i of fileInput) {
-        btn += `<button type="button" data-index="${count}" class="image-btn btn btn-outline-primary" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>`
+        btn += `<button type="button" data-index="${count}" class="image-btn py-2" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#previewModal">${i.name}</button>`
 
         images.push({
             name: i.name,
@@ -58,3 +58,12 @@ btnReset.addEventListener('click', function(e){
         }
     });
 })
+
+// Auto resize textarea
+const textarea = document.querySelectorAll('textarea')
+textarea.forEach(function () {
+    this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+}).on("input", function () {
+    this.style.height = 0;
+    this.style.height = (this.scrollHeight) + "px";
+});
