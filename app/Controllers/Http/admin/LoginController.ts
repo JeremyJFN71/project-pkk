@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import LoginValidator from 'App/Validators/LoginValidator'
+import session from 'Config/session'
 
 export default class LoginController {
     public async index({ view }:HttpContextContract){
@@ -16,6 +17,7 @@ export default class LoginController {
         
         try {
             await auth.attempt(email, password)
+            session.flash('success_login', '<strong>Berhasil Masuk!</strong> Selamat Bekerja.')
             response.redirect('/admin')
         } catch {
             session.flash('errors', {login: 'Login Gagal'})
@@ -23,8 +25,9 @@ export default class LoginController {
         }
     }
 
-    public async logout({auth, response}:HttpContextContract){
+    public async logout({auth, response, session}:HttpContextContract){
         await auth.logout()
+        session.flash('success_logout', '<strong>Berhasil Keluar!</strong> Silahkan Masuk kembali.')
         response.redirect('/admin/login')
     }
 }
