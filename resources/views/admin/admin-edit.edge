@@ -53,18 +53,21 @@
                         <label style="font-size: 17px" for="images">Gambar Produk</label>
                     </div>
                     <div class="col-lg-10">
-                        <button type="button" class="upload me-2" style="border-radius: 30px;">
-                            <label for="images" class="p-2 d-flex align-items-center gap-1" style="cursor: pointer">
-                                <iconify-icon icon="material-symbols:upload-sharp" width="20" height="20"></iconify-icon> 
-                                <span>Unggah</span>
-                            </label>
-                        </button>
-                        <span id="image-length">No file choosen</span>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="upload me-2" style="border-radius: 30px;">
+                                <label for="images" class="p-2 d-flex align-items-center gap-1" style="cursor: pointer">
+                                    <iconify-icon icon="material-symbols:upload-sharp" width="20" height="20"></iconify-icon> 
+                                    <span>Unggah</span>
+                                </label>
+                            </button>
+                            <i id="image-length">No file choosen</i>
+                        </div>
 
                         <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple onchange="imagePreview(event)" hidden>
                         @if(flashMessages.has('images'))
                             <div class="text-danger" style="font-size: .875em;">{{ flashMessages.get('images') }}</div>
                         @endif
+
                         <div class="d-flex flex-wrap gap-2" id="image-buttons"></div>
                     </div>
                 </div>

@@ -143,11 +143,11 @@ NOTE :
         product_id: 6
       },
       {
-        image: '/uploads/cleye4tb9000h5o7y5uk34gwh.png',
+        image: '/uploads/clez8krsy0002lg7y48ipdyqu.png',
         product_id: 6
       },
       {
-        image: '/uploads/cleye6984000j5o7y49sr1d0x.png',
+        image: '/uploads/clez8krto0003lg7y8gg956j4.png',
         product_id: 7
       },
       {
