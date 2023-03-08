@@ -139,15 +139,15 @@ NOTE :
         product_id: 5
       },
       {
-        image: '/uploads/cleye4tav000g5o7yc7ac20rm.png',
-        product_id: 6
-      },
-      {
         image: '/uploads/clez8krsy0002lg7y48ipdyqu.png',
         product_id: 6
       },
       {
         image: '/uploads/clez8krto0003lg7y8gg956j4.png',
+        product_id: 6
+      },
+      {
+        image: '/uploads/cleye6984000j5o7y49sr1d0x.png',
         product_id: 7
       },
       {
