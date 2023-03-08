@@ -3,7 +3,7 @@
 @section('styles')
     <style>
         .tabel {
-            margin: 100px auto;
+            margin: 80px auto;
         }
 
         .add {
@@ -51,10 +51,17 @@
 @endsection
 
 @section('content')
+@if(flashMessages.has('success_login'))
+{{--  Allert  --}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{{ flashMessages.get('success_login') }}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="container tabel">
     <h2 class="fs-2 mb-4">Selamat Datang, Admin</h2>
     <div class="add-button">
-
         
         <button onclick="window.location.href='{{ route('admin.create') }}'" class="add mx-3 mb-3">
             <p class="my-0">Tambah Produk</p>
