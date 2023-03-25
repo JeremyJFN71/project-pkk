@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import cloudinary from '@ioc:Adonis/Addons/Cloudinary'
 
 import ProductValidator from 'App/Validators/ProductValidator'
 import Product from 'App/Models/Product'
@@ -52,12 +53,12 @@ export default class AdminsController {
             wa_number: request.input('wa_number'),
             price: request.input('price'),
         })
-        
+
         // Create Product Image
         for (let image of images) {      
-            await image.moveToDisk('./', {name: image.fileName})
+            const res = await cloudinary.upload(image, image.clientName, {folder: 'xii-sija-2-store'});
             await ProductImage.create({
-                image: `/uploads/${image.fileName}`,
+                image: res.secure_url,
                 product_id: product.id,
             })
         }

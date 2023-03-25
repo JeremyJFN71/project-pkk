@@ -6,7 +6,7 @@ import Category from 'App/Models/Category'
 export default class extends BaseSeeder {
   public async run () {
     // Category
-    Category.createMany([
+    await Category.createMany([
       {
         name: 'Baju',
         slug: 'baju'
@@ -18,6 +18,10 @@ export default class extends BaseSeeder {
       {
         name: 'Jaket',
         slug: 'jaket'
+      },
+      {
+        name: 'Dakimura',
+        slug: 'dakimura'
       },
     ])
 
@@ -102,69 +106,187 @@ NOTE :
         wa_number: '0895330883277',
         price: 20000
       },
+      {
+        name: 'Varsity Jacket Pria',
+        description: `Spesifikasi :
+Material Pakaian : cotton fleece gramasi 300 
+Bahan lengan : oscar
+Waterproof
+Kualitas  lembut dan halus
+
+Size yang tersedia : 
+Size M
+Size L
+Size XL
+
+NB : Barang yang sudah dibeli tidak dapat dikembalikan atau ditukar, kecuali kesalahan dari pihak kami`,
+        category_id: 3,
+        wa_number: '0895610484439',
+        price: 450000
+      },
+      {
+        name: 'Hoodie Simple',
+        description: `Sweater yang terbuat dari bahan berkualitas. Tersedia berbagai banyak ukuran, mulai dari ukuran S, M, L, XL. Bahan yang digunakan adem tapi juga hangat. Hanya tersedia warna hitam namun bisa di Kustom gambar yang diinginkan.`,
+        category_id: 3,
+        wa_number: '085719735090',
+        price: 80000
+      },
+      {
+        name: 'Hoodie BlackSoft SIJA',
+        description: `Hoodie BlackSoft SIJA
+Deskripsi Produk
+- Bahannya dari Fleece
+- Tidak Panas
+- Lebih Cepat Kering
+
+Size:
+Size S
+Size M
+Size L
+Size XL`,
+        category_id: 3,
+        wa_number: '087889990002',
+        price: 75000
+      },
+      {
+        name: 'Weebs T-Shirt',
+        description: `T-shirt simple yang menyajikan banyak WAIFU yang membuat keseharian anda menjadi lebih berwarna dan selalu ceria`,
+        category_id: 1,
+        wa_number: '082310738309',
+        price: 120000
+      },
+      {
+        name: 'Dakimakura Marin',
+        description: `Bantal yang sangad nyaman, serta membantu membahagiakan diri anda yang kesepian karena JONES karena desain character Marin chan yang sangad KAWAIHH yang membuat siapa saja tidak tahan untuk meniduri bantal tersebut :).`,
+        category_id: 4,
+        wa_number: '082310738309',
+        price: 320000
+      },
+      {
+        name: 'Baju',
+        description: `1. Bahan katun asli (cek testimoni dari pembeli sebelumnya dan review langsung dari kita, ya!)
+Dijamin, bahan kaos gak akan buat kamu gerah karena mengandung katun asli         2. hasil akhirnya: lembut, nyaman dipakai, dan ringan
+3. Varian warna: mejikuhibiniu, termasuk warna-warna soft (cek katalog kita yuk!)
+Lengan pendek dan lengan panjang (request to us!)`,
+        category_id: 1,
+        wa_number: '081283338556',
+        price: 95000
+      },
     ])
 
     // Product Image
     await ProductImage.createMany([
       {
-        image: '/uploads/cleydijsj0001k07ydjr37mhr.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679740851/xii-sija-2-store/Anari.png.png',
         product_id: 1
       },
       {
-        image: '/uploads/cleydnr6a00015o7ygxtm0gem.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679740945/xii-sija-2-store/Cute%20Astronaut%20T-Shirt.png.png',
         product_id: 2
       },
       {
-        image: '/uploads/cleye9z69000w5o7yhwdw6cyi.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679744872/xii-sija-2-store/Althap%20-%20front%20and%20back.png.png',
         product_id: 3
       },
       {
-        image: '/uploads/cleye9z5c000v5o7yg6vcd2pd.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679744875/xii-sija-2-store/Althap%20-%20Front.png.png',
         product_id: 3
       },
       {
-        image: '/uploads/cleye9z7b000x5o7y6rc6e6pl.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679744867/xii-sija-2-store/Althap%20-%20Back.png.png',
         product_id: 3
       },
       {
-        image: '/uploads/cleyds65h00095o7y0mjw8v6u.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745115/xii-sija-2-store/O%27Sweats.png.png',
         product_id: 4
       },
       {
-        image: '/uploads/cleye3bka000c5o7yd6jcdn6x.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745268/xii-sija-2-store/Tote%20Bag%201.png.png',
         product_id: 5
       },
       {
-        image: '/uploads/cleye3bkp000d5o7yfocsgl3n.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745271/xii-sija-2-store/Tote%20Bag%202.png.png',
         product_id: 5
       },
       {
-        image: '/uploads/clez8krsy0002lg7y48ipdyqu.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745501/xii-sija-2-store/Gamers%20Clothes%201.png.png',
         product_id: 6
       },
       {
-        image: '/uploads/clez8krto0003lg7y8gg956j4.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745504/xii-sija-2-store/Gamers%20Clothes%202.png.png',
         product_id: 6
       },
       {
-        image: '/uploads/cleye6984000j5o7y49sr1d0x.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745581/xii-sija-2-store/Youpy.png.png',
         product_id: 7
       },
       {
-        image: '/uploads/cleye7ojs000o5o7yhe5tb8pc.jpg',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745705/xii-sija-2-store/Totebag%20Kanvas%20Custom%201.jpg.jpg',
         product_id: 8
       },
       {
-        image: '/uploads/cleye7ok6000p5o7ycvzw4tos.jpg',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745707/xii-sija-2-store/Totebag%20Kanvas%20Custom%202.jpg.jpg',
         product_id: 8
       },
       {
-        image: '/uploads/cleye7okk000q5o7yespxhbgw.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745710/xii-sija-2-store/Totebag%20Kanvas%20Custom%203.png.png',
         product_id: 8
       },
       {
-        image: '/uploads/cleye7okw000r5o7ye06s2f2j.png',
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745713/xii-sija-2-store/Totebag%20Kanvas%20Custom%204.png.png',
         product_id: 8
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745859/xii-sija-2-store/Varsity%20Jacket%20Pria%201.png.png',
+        product_id: 9
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679745861/xii-sija-2-store/Varsity%20Jacket%20Pria%202.png.png',
+        product_id: 9
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746253/xii-sija-2-store/Hoodie%20Simple.jpg.jpg',
+        product_id: 10
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746460/xii-sija-2-store/Hoodie%20BlackSoft%20SIJA%20-Depan.jpg.jpg',
+        product_id: 11
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746455/xii-sija-2-store/Hoodie%20BlackSoft%20SIJA%20-%20Belakang.jpg.jpg',
+        product_id: 11
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746457/xii-sija-2-store/Hoodie%20BlackSoft%20SIJA%20-%20Samping%20Kanan.jpg.jpg',
+        product_id: 11
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746458/xii-sija-2-store/Hoodie%20BlackSoft%20SIJA%20-%20Samping%20Kiri.jpg.jpg',
+        product_id: 11
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746791/xii-sija-2-store/Weebs%20T-Shirt%20-%20DESAIN%20BAJU%20GWEHHH.png.png',
+        product_id: 12
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746794/xii-sija-2-store/Weebs%20T-Shirt%20-%20HAREM%21%21.png.png',
+        product_id: 12
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679746788/xii-sija-2-store/Weebs%20T-Shirt%20-%20Beauty%20Of.png.png',
+        product_id: 12
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679747095/xii-sija-2-store/Dakimakura%20Marin%20-%20Dakimakura%20MARIN.png.png',
+        product_id: 13
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679747191/xii-sija-2-store/Baju%201.jpg.jpg',
+        product_id: 14
+      },
+      {
+        image: 'https://res.cloudinary.com/dhdylo0de/image/upload/v1679747193/xii-sija-2-store/Baju%202.jpg.jpg',
+        product_id: 14
       },
     ])
   }
