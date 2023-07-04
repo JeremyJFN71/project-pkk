@@ -23,7 +23,7 @@ npm install
 
 - Copy the content of `.env.example` file then create `.env` file and paste from before to `.env` file.
 
-- Create Database with the same name as `MYSQL_DB_NAME` from `.env` file.
+- Create Database with the same name as `PG_DB_NAME` from `.env` file.
 
 - Run migration
 ```bash
