@@ -1,5 +1,6 @@
 node_modules
 build
+database/seeders
 coverage
 .vscode
 .DS_STORE
