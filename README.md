@@ -34,6 +34,8 @@ node ace migration:fresh --seed
 ```bash
 npm run dev
 ```
+Note: change ssl to false in config/database if you run in local
+
 ## Authors
 
 - [@JeremyJFN71](https://www.github.com/JeremyJFN71)
